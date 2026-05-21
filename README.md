@@ -5,6 +5,11 @@ AI Crypto Research Dashboard dengan live market data, news sentiment, risk score
 ## Fitur
 
 - Live market dashboard dari Binance public API
+- Advanced search, filter, sort: all/gainers/losers/watchlist
+- Demo login + JSON database watchlist
+- Auto sentiment-change alert hook with Telegram support
+- Multi-coin compare page at `/compare`
+- Coin detail chart page with Binance 30D klines
 - Coin list: BTC, ETH, SOL, BNB, XRP, DOGE
 - 24h change, high/low, volume
 - News sentiment section: bullish / bearish / neutral
@@ -12,7 +17,7 @@ AI Crypto Research Dashboard dengan live market data, news sentiment, risk score
 - Risk score per coin
 - Dark glassmorphism UI
 - Responsive mobile/desktop
-- API routes: `/api/market` dan `/api/news`
+- API routes: `/api/market`, `/api/rss`, `/api/summary`, `/api/watchlist`, `/api/alerts/check`, `/api/telegram`
 - Siap deploy ke Vercel
 
 ## Tech Stack
