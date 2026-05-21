@@ -50,11 +50,11 @@ npm run build
 
 ## Roadmap
 
-- Real RSS/news fetcher
-- AI summary via 9Router/OpenRouter
-- Watchlist localStorage
-- Coin detail chart page
-- Telegram alerts
+- Real RSS/news fetcher: done via `/api/rss`
+- AI summary via 9Router/OpenAI-compatible endpoint: done via `/api/summary`
+- Watchlist localStorage: done on dashboard
+- Coin detail chart page: done with Binance 30D kline SVG chart
+- Telegram alerts: done via `/api/telegram` hook
 - Database login
 
 ## License

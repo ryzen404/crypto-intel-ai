@@ -1,16 +1,14 @@
-const coins = [
-  { symbol:'BTCUSDT', name:'Bitcoin' }, { symbol:'ETHUSDT', name:'Ethereum' }, { symbol:'SOLUSDT', name:'Solana' },
-  { symbol:'BNBUSDT', name:'BNB' }, { symbol:'XRPUSDT', name:'XRP' }, { symbol:'DOGEUSDT', name:'Dogecoin' }
-]
 export async function GET() {
+  const symbols = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT','DOGEUSDT']
+  const names = { BTCUSDT:'Bitcoin', ETHUSDT:'Ethereum', SOLUSDT:'Solana', BNBUSDT:'BNB', XRPUSDT:'XRP', DOGEUSDT:'Dogecoin' }
   try {
-    const market = await Promise.all(coins.map(async c => {
-      const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${c.symbol}`, { cache: 'no-store' })
+    const rows = await Promise.all(symbols.map(async symbol => {
+      const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`, { cache: 'no-store' })
       const x = await res.json()
-      return { ...c, price: Number(x.lastPrice), change: Number(x.priceChangePercent), high: Number(x.highPrice), low: Number(x.lowPrice), volume: Number(x.volume) }
+      return { symbol, name: names[symbol], price: Number(x.lastPrice), change: Number(x.priceChangePercent), high: Number(x.highPrice), low: Number(x.lowPrice), volume: Number(x.volume) }
     }))
-    return Response.json({ ok: true, market })
-  } catch {
+    return Response.json({ ok: true, market: rows })
+  } catch (e) {
     return Response.json({ ok: false, error: 'Failed to load market data' }, { status: 500 })
   }
 }
